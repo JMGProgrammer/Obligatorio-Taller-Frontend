@@ -1,6 +1,9 @@
 "use client";
 import { useState } from "react";
 
+const BG_IMAGE_URL =
+  "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600";
+
 const IMAGES = [
   {
     id: 1,
@@ -35,7 +38,7 @@ const IMAGES = [
 ];
 
 const STATS = [
-  { value: "2020", label: "Fundada" },
+  { value: "2026", label: "Fundada" },
   { value: "10k+", label: "Usuarios" },
   { value: "99.9%", label: "Uptime" },
   { value: "4.9★", label: "Valoración" },
@@ -111,178 +114,192 @@ export default function AboutPage() {
   const next = () => setCurrent((c) => Math.min(c + 1, maxIndex));
 
   return (
-    <main className="min-h-screen bg-gray-100 px-6 py-12">
-      <div className="max-w-5xl mx-auto space-y-6">
-        {/* Info card */}
-        <div className="bg-white rounded-3xl shadow-2xl shadow-gray-200/80 p-1">
-          <div className="bg-white rounded-[22px] shadow-[inset_0_2px_8px_rgba(0,0,0,0.04)] p-10 md:p-14">
-            <div className="max-w-2xl">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-gray-100 border border-gray-200 rounded-full px-4 py-1.5 mb-6 shadow-sm">
-                <span className="w-2 h-2 bg-gray-900 rounded-full" />
-                <span className="text-xs font-medium text-gray-500 uppercase tracking-widest">
-                  Quiénes somos
-                </span>
-              </div>
+    <>
+      {/* Fondo fijo detrás de TODO (header incluido) */}
+      <div
+        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${BG_IMAGE_URL})` }}
+      />
 
-              <h1 className="text-3xl md:text-5xl font-semibold text-gray-900 tracking-tight leading-tight mb-6">
-                Construimos herramientas
-                <br />
-                <span className="text-gray-400">que importan de verdad.</span>
-              </h1>
-
-              <p className="text-gray-500 text-base leading-relaxed mb-4">
-                Somos un equipo pequeño con una visión grande. Desde 2020
-                trabajamos para crear una plataforma que simplifique el día a
-                día de personas y equipos, sin curvas de aprendizaje
-                innecesarias ni complejidades que no agregan valor.
-              </p>
-              <p className="text-gray-400 text-base leading-relaxed mb-10">
-                Creemos que la tecnología debería desaparecer en el fondo y
-                dejar que las personas hagan lo que mejor saben hacer. Por eso
-                cada decisión de diseño empieza por la misma pregunta: ¿esto le
-                hace la vida más fácil al usuario?
-              </p>
-
-              {/* Stats row */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {STATS.map((s) => (
-                  <div
-                    key={s.label}
-                    className="bg-gray-50 border border-gray-100 rounded-2xl p-4 shadow-sm"
-                  >
-                    <p className="text-xl font-semibold text-gray-900">
-                      {s.value}
-                    </p>
-                    <p className="text-xs text-gray-400 mt-0.5">{s.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Values card */}
-        <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/60 p-1">
-          <div className="bg-white rounded-[22px] shadow-[inset_0_2px_8px_rgba(0,0,0,0.04)] p-8 md:p-12">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6 tracking-tight">
-              Nuestros valores
-            </h2>
-            <div className="grid md:grid-cols-3 gap-4">
-              {VALUES.map((v) => (
-                <div
-                  key={v.title}
-                  className="bg-gray-50 border border-gray-100 rounded-2xl p-5 shadow-sm"
-                >
-                  <div className="w-9 h-9 bg-gray-900 rounded-xl flex items-center justify-center text-white mb-4 shadow-md shadow-gray-900/15">
-                    {v.icon}
-                  </div>
-                  <h3 className="text-sm font-semibold text-gray-900 mb-1">
-                    {v.title}
-                  </h3>
-                  <p className="text-sm text-gray-400 leading-relaxed">
-                    {v.desc}
-                  </p>
+      {/* Overlay blur */}
+      <div className="fixed inset-0 -z-10 backdrop-blur-sm bg-white/20" />
+      <main className="min-h-screen bg-wite/20 px-6 py-12">
+        <div className="max-w-5xl mx-auto space-y-6">
+          {/* Info card */}
+          <div className="bg-white rounded-3xl shadow-2xl shadow-gray-200/80 p-1">
+            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_8px_rgba(0,0,0,0.04)] p-10 md:p-14">
+              <div className="max-w-2xl">
+                {/* Badge */}
+                <div className="inline-flex items-center gap-2 bg-gray-100 border border-gray-200 rounded-full px-4 py-1.5 mb-6 shadow-sm">
+                  <span className="w-2 h-2 bg-gray-900 rounded-full" />
+                  <span className="text-xs font-medium text-gray-500 uppercase tracking-widest">
+                    Quiénes somos
+                  </span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
 
-        {/* Carousel card */}
-        <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/60 p-1">
-          <div className="bg-white rounded-[22px] shadow-[inset_0_2px_8px_rgba(0,0,0,0.04)] p-8 md:p-12">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-semibold text-gray-900 tracking-tight">
-                Nuestro espacio
-              </h2>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={prev}
-                  disabled={current === 0}
-                  className="w-8 h-8 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-200 hover:text-gray-900 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15 19l-7-7 7-7"
-                    />
-                  </svg>
-                </button>
-                <span className="text-xs text-gray-400 tabular-nums w-12 text-center">
-                  {current + 1} / {maxIndex + 1}
-                </span>
-                <button
-                  onClick={next}
-                  disabled={current === maxIndex}
-                  className="w-8 h-8 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-200 hover:text-gray-900 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </button>
+                <h1 className="text-3xl md:text-5xl font-semibold text-gray-900 tracking-tight leading-tight mb-6">
+                  Acerca de,
+                  <br />
+                  <span className="text-gray-400">Rutas del Sabor</span>
+                </h1>
+
+                <p className="text-gray-500 text-base leading-relaxed mb-4">
+                  En Rutas del Sabor creemos que descubrir buena comida debería
+                  ser tan simple como disfrutarla. Nuestra plataforma nace con
+                  el propósito de conectar a las personas con los mejores
+                  locales gastronómicos, ayudándolas a encontrar sabores
+                  auténticos, experiencias únicas y opciones que se adapten a
+                  cada gusto y ocasión.
+                </p>
+                <p className="text-gray-400 text-base leading-relaxed mb-10">
+                  Reunimos en un solo lugar una selección de restaurantes,
+                  cafeterías, bares y propuestas culinarias locales, facilitando
+                  la exploración y el descubrimiento de nuevos espacios para
+                  comer. Ya sea que busques un lugar para una salida especial,
+                  una comida rápida o una experiencia gastronómica diferente,
+                  Rutas del Sabor te guía en cada elección.
+                </p>
+
+                {/* Stats row */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  {STATS.map((s) => (
+                    <div
+                      key={s.label}
+                      className="bg-gray-50 border border-gray-100 rounded-2xl p-4 shadow-sm"
+                    >
+                      <p className="text-xl font-semibold text-gray-900">
+                        {s.value}
+                      </p>
+                      <p className="text-xs text-gray-400 mt-0.5">{s.label}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
+          </div>
 
-            {/* Carousel track */}
-            <div className="overflow-hidden rounded-2xl">
-              <div
-                className="flex gap-4 transition-transform duration-500 ease-in-out"
-                style={{
-                  transform: `translateX(calc(-${current} * (33.333% + 5.5px)))`,
-                }}
-              >
-                {IMAGES.map((img) => (
+          {/* Values card */}
+          <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/60 p-1">
+            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_8px_rgba(0,0,0,0.04)] p-8 md:p-12">
+              <h2 className="text-lg font-semibold text-gray-900 mb-6 tracking-tight">
+                Nuestros valores
+              </h2>
+              <div className="grid md:grid-cols-3 gap-4">
+                {VALUES.map((v) => (
                   <div
-                    key={img.id}
-                    className="min-w-[calc(33.333%-11px)] aspect-video rounded-2xl overflow-hidden shadow-md shadow-gray-200/60 flex-shrink-0"
+                    key={v.title}
+                    className="bg-gray-50 border border-gray-100 rounded-2xl p-5 shadow-sm"
                   >
-                    <img
-                      src={img.src}
-                      alt={img.alt}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    />
+                    <div className="w-9 h-9 bg-gray-900 rounded-xl flex items-center justify-center text-white mb-4 shadow-md shadow-gray-900/15">
+                      {v.icon}
+                    </div>
+                    <h3 className="text-sm font-semibold text-gray-900 mb-1">
+                      {v.title}
+                    </h3>
+                    <p className="text-sm text-gray-400 leading-relaxed">
+                      {v.desc}
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
+          </div>
 
-            {/* Dot indicators */}
-            <div className="flex justify-center gap-1.5 mt-5">
-              {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    i === current ? "w-6 bg-gray-900" : "w-1.5 bg-gray-300"
-                  }`}
-                />
-              ))}
+          {/* Carousel card */}
+          <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/60 p-1">
+            <div className="bg-white rounded-[22px] shadow-[inset_0_2px_8px_rgba(0,0,0,0.04)] p-8 md:p-12">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-lg font-semibold text-gray-900 tracking-tight">
+                  Nuestro espacio
+                </h2>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={prev}
+                    disabled={current === 0}
+                    className="w-8 h-8 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-200 hover:text-gray-900 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm"
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+                  <span className="text-xs text-gray-400 tabular-nums w-12 text-center">
+                    {current + 1} / {maxIndex + 1}
+                  </span>
+                  <button
+                    onClick={next}
+                    disabled={current === maxIndex}
+                    className="w-8 h-8 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-200 hover:text-gray-900 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm"
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* Carousel track */}
+              <div className="overflow-hidden rounded-2xl">
+                <div
+                  className="flex gap-4 transition-transform duration-500 ease-in-out"
+                  style={{
+                    transform: `translateX(calc(-${current} * (33.333% + 5.5px)))`,
+                  }}
+                >
+                  {IMAGES.map((img) => (
+                    <div
+                      key={img.id}
+                      className="min-w-[calc(33.333%-11px)] aspect-video rounded-2xl overflow-hidden shadow-md shadow-gray-200/60 flex-shrink-0"
+                    >
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Dot indicators */}
+              <div className="flex justify-center gap-1.5 mt-5">
+                {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrent(i)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      i === current ? "w-6 bg-gray-900" : "w-1.5 bg-gray-300"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Decorative depth layers */}
-        <div className="h-2 mx-6 bg-gray-200 rounded-b-3xl opacity-50" />
-        <div className="h-1.5 mx-10 bg-gray-100 rounded-b-3xl opacity-30" />
-      </div>
-    </main>
+          {/* Decorative depth layers */}
+          <div className="h-2 mx-6 bg-gray-200 rounded-b-3xl opacity-50" />
+          <div className="h-1.5 mx-10 bg-gray-100 rounded-b-3xl opacity-30" />
+        </div>
+      </main>
+    </>
   );
 }

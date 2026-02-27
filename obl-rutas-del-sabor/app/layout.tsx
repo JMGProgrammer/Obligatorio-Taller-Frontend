@@ -21,8 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${geistSans.variable} antialiased bg-gray-100`}>
-        <Header />
+      <body className={`${geistSans.variable} antialiased`}>
+        <div className="relative z-10">
+          <Header />
+        </div>
         {children}
         <Footer />
       </body>

@@ -2,10 +2,10 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-100 px-6 py-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-lg shadow-gray-200/70 px-1 py-1">
-          <div className="bg-white rounded-[14px] shadow-[inset_0_1px_4px_rgba(0,0,0,0.04)] px-6 py-5">
+    <footer className="bg-white/30 px-6 py-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="bg-white/30 backdrop-blur-md rounded-2xl shadow-lg shadow-gray-200/70 px-1 py-1">
+          <div className="bg-white/30 rounded-[14px] shadow-[inset_0_1px_4px_rgba(0,0,0,0.04)] px-6 py-5">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               {/* Brand */}
               <div className="flex items-center gap-2">
@@ -43,7 +43,7 @@ export default function Footer() {
               </div>
 
               {/* Copyright */}
-              <p className="text-xs text-gray-400">
+              <p className="text-xs text-gray-600">
                 © {year} Rutas del Sabor. Todos los derechos reservados.
               </p>
             </div>
