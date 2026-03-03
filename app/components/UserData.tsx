@@ -370,8 +370,6 @@ export default function UserPage() {
               </div>
             </div>
           )}
-
-          <div className="h-2 mx-6 bg-gray-200 rounded-b-3xl opacity-50" />
         </div>
       </main>
     </>

@@ -62,7 +62,7 @@ export default function ProfilePage() {
   const [addingLocal, setAddingLocal] = useState(false);
   const [addLocalError, setAddLocalError] = useState("");
 
-  // Add dish form
+  // Form de añadir plato
   const [dishName, setDishName] = useState("");
   const [dishCategory, setDishCategory] = useState("PRINCIPAL");
   const [dishLocalId, setDishLocalId] = useState("");
@@ -72,7 +72,7 @@ export default function ProfilePage() {
   const [addingDish, setAddingDish] = useState(false);
   const [addDishError, setAddDishError] = useState("");
 
-  // Delete
+  // Delete que no funca.
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export default function ProfilePage() {
       setUser(parsed);
       setEditName(parsed.name ?? "");
       setEditUsername(parsed.username ?? "");
-      // Fetch full user data (locals + dishes)
+      // Hace fetch de toda la data del usuario (locals, dishes) para mostrarlos en el perfil.
       fetchUserData(parsed.id, token);
     } else {
       setLoading(false);
@@ -101,13 +101,13 @@ export default function ProfilePage() {
       });
       if (!res.ok) throw new Error();
       const data = await res.json();
-      // API returns { item: {...}, locals: [...], dishes: [...] }
+      // La api devuelve locals y dishes directamente o dentro de item, chequea ambos.
       setUserData({
         locals: data.locals ?? data.item?.locals ?? [],
         dishes: data.dishes ?? data.item?.dishes ?? [],
       });
-    } catch {
-      /* silently fail */
+    } catch (err) {
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -234,12 +234,12 @@ export default function ProfilePage() {
         className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${BG_IMAGE_URL})` }}
       />
-      {/* Overlay blur */}
+      {/* blur */}
       <div className="fixed inset-0 -z-10 backdrop-blur-sm bg-white/20" />
 
       <main className="min-h-screen px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-5">
-          {/* Profile card */}
+          {/* Card de perfil */}
           <div className="bg-white rounded-3xl shadow-2xl shadow-gray-200/80 p-1">
             <div className="bg-white rounded-[22px] shadow-[inset_0_2px_8px_rgba(0,0,0,0.04)] p-10">
               <div className="flex items-start justify-between mb-8">
@@ -267,7 +267,7 @@ export default function ProfilePage() {
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  {/* Add button */}
+                  {/* Añade botones para añadir locales o platos */}
                   <div className="relative">
                     <button
                       onClick={() => {
@@ -841,8 +841,8 @@ export default function ProfilePage() {
                           onClick={async () => {
                             if (!confirm("¿Eliminár este local?")) return;
                             setDeletingId(local.id);
-                            // API doesn't have DELETE, so just refresh
-                            setDeletingId(null);
+                            // La api no elimina asi que recarga la pagina.
+                            window.location.reload();
                           }}
                           disabled={deletingId === local.id}
                           className="w-8 h-8 rounded-xl flex items-center justify-center text-gray-300 hover:text-red-400 hover:bg-red-50 transition-all shrink-0 border border-transparent hover:border-red-100"
