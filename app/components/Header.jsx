@@ -63,7 +63,13 @@ export default function Header() {
                   return (
                     <button
                       key={link.href}
-                      onClick={() => router.push(link.href)}
+                      onClick={() => {
+                        if (link.href === "/Dashboard" && !isLoggedIn) {
+                          router.push("/login");
+                        } else {
+                          router.push(link.href);
+                        }
+                      }}
                       className={`px-3.5 py-2 rounded-xl text-sm transition-all duration-150 ${
                         active
                           ? "bg-gray-100 text-gray-900 font-medium shadow-sm"

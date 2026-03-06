@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import NotAuthorized from "./NotAuthorized";
 
 const BG_IMAGE_URL =
   "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600";
@@ -643,7 +644,24 @@ function DishesTab() {
 }
 
 export default function Dashboard() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<"locales" | "platos">("locales");
+  const [checking, setChecking] = useState(true);
+  const [authorized, setAuthorized] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setAuthorized(false);
+    } else {
+      setAuthorized(true);
+    }
+    setChecking(false);
+  }, []);
+
+  if (checking) return null;
+  if (!authorized) return <NotAuthorized />;
+
   return (
     <>
       {/* Fondo fijo detrás de TODO (header incluido) */}
